@@ -64,7 +64,7 @@ messages, i.e. messages that live in the _cur/_ sub-directory of a Maildir.
 | T    | Trashed; to be deleted later       |
 
 New messages (in the _new/_ sub-directory) do not have flags encoded in their
-file-name; but we *mu* uses `N' in the *--flags* to represent that:
+file-name; but *mu* uses `N' in the *--flags* to represent that:
 
 #+ATTR_MAN: :disable-caption t
 | Flag | Meaning |
