@@ -802,17 +802,16 @@ to t before \"automatic\" searches.")
 
 Switch to the output buffer for the results."
   (let* ((buf (mu4e-get-headers-buffer nil t))
-         (view-window mu4e~headers-view-win)
          (inhibit-read-only t)
          (maxnum (unless mu4e-search-full mu4e-search-results-limit)))
     (with-current-buffer buf
-      ;; NOTE: this resets all buffer-local variables, including
-      ;; `mu4e~headers-view-win', which may have a live window if the
-      ;; headers buffer already exists when `mu4e-get-headers-buffer'
-      ;; is called.
-      (mu4e-headers-mode)
-      (setq mu4e~headers-view-win view-window
-            list-buffers-directory expr)
+      ;; NOTE: `mu4e-headers-mode' resets all buffer-local variables, including
+      ;; `mu4e~headers-view-win', which may have a live window if the headers
+      ;; buffer already existed. Save & restore after the mode reset.
+      (let ((view-window mu4e~headers-view-win))
+        (mu4e-headers-mode)
+        (setq mu4e~headers-view-win view-window
+              list-buffers-directory expr))
       (mu4e--modeline-update))
 
     ;; For interactive searches, display the buffer if not already visible; for
