@@ -200,7 +200,8 @@ you don't consider that reasonable, set to nil."
   :safe 'booleanp
   :group 'mu4e-compose)
 
-(defcustom mu4e-compose-reply-include-mime-types '("text/x-patch")
+(defcustom mu4e-compose-reply-include-mime-types
+  '("text/x-patch" "text/x-diff")
   "MIME types from the parent message to include when replying.
 
 When replying to a message, MIME parts with content-types in this
