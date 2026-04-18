@@ -1091,8 +1091,12 @@ corresponding Gnus selector button in the buffer."
                         (lambda (h) (equal (mm-handle-media-type h) "text/plain"))
                         children))
                 (target (if (mm-handle-displayed-p html) plain html))
-                (pos (text-property-any (point-min) (point-max)
-                                        'gnus-data target)))
+                ;; Search from the body (this avoids find the wrong
+                ;; `gnus-data' in the Attachments: header, if any.
+                (pos (save-excursion
+                       (article-goto-body)
+                       (text-property-any (point) (point-max)
+                                          'gnus-data target))))
           (progn
             (goto-char pos)
             (gnus-article-press-button)
