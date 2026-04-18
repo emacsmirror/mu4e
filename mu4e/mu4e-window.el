@@ -116,7 +116,7 @@ treated as =\\'frame."
 
 If CREATE is non-nil, the headers buffer is created if the
 generated name does not already exist."
-  (let* ((buffer-name
+  (let* ((buffer-name ;; buffer-or-name
           (or
            ;; buffer name generator func. If a user wants
            ;; to supply its own naming scheme, we use that
@@ -131,6 +131,7 @@ generated name does not already exist."
            ;; there is no such linked buffer -- it is
            ;; detached -- raise an error.
            (and (mu4e-current-buffer-type-p 'view)
+                (buffer-live-p mu4e-linked-headers-buffer)
                 mu4e-linked-headers-buffer)
            ;; if we're already in a headers buffer then
            ;; that is the one we use.
