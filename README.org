@@ -13,7 +13,9 @@
 
 Welcome to ~mu~!
 
-Latest development news: [[NEWS.org]].
+#+begin_html
+<img src="assets/email-hazard.jpg" style="float:right" alt="drowning in email"/>
+#+end_html
 
 With the enormous amounts of e-mail many people gather and the importance of
 e-mail message in our work-flows, it's essential to quickly deal with all that
@@ -21,23 +23,23 @@ mail - in particular, to instantly find that one important e-mail you need right
 now, and quickly file away message for later use.
 
 ~mu~ is a set of command-line tools for dealing with e-mail messages stored in the
-Maildir-format. ~mu~'s goal is to help you to quickly find the messages you need,
+[[https://en.wikipedia.org/wiki/Maildir][Maildir]]-format. ~mu~'s goal is to help you to quickly find the messages you need,
 view them, extract attachments, and so on.
 
-#+BEGIN_HTML
-<img src="assets/mu-structure.png"/>
-#+END_HTML
+On top of ~mu~, some related tools are built:
+
+- ~mu4e~: a full-featured e-mail client that runs inside [[https://www.gnu.org/software/emacs/][GNU/Emacs]] (more below)
+
+- ~mu-scm~: bindings for the [[https://www.gnu.org/software/guile/guile.html][Guile/Scheme]] programming language (version 3.0 and
+  later)
+
+#+begin_html
+<img src="assets/mu-structure.png" alt="mu structure diagram"/>
+#+end_html
 
 After indexing your messages into a [[http://www.xapian.org][Xapian]]-database, you can search them through
 a query language. You can use various message fields or words in the body text
 to find the right messages.
-
-Built on top of ~mu~ are some other tools (included in this package):
-
-- ~mu4e~: a full-featured e-mail client that runs inside emacs (more below)
-
-- ~mu-scm~: bindings for the Guile/Scheme programming language (version 3.0 and
-  later)
 
 ~mu~ is written in C++; ~mu4e~ is written in ~elisp~ and ~mu-scm~ is written in a mix of
 C++ and Scheme.
@@ -55,8 +57,8 @@ Users and developers are encouraged to join the [[https://groups.google.com/g/mu
 
 *mu* attempts to balance development speed and stability.
 
-Active development takes place on ~master~ (the 1.14 series), and we maintain
-~release/1.12~ as well, for any critical fixes.
+Active development takes place on ~master~ (the 1.14 series), and we maintain the
+~release/1.12~ branch as well, for any critical fixes.
 
 Every few months, we release a stable version (e.g. ~1.14.0~); development then
 continues in ~master~, with ~-pre<n>~ (e.g. ~1.14.1-pre1~): ~-pre~-suffixed versions
@@ -160,8 +162,10 @@ Mu4e is an e-mail client for [[https://www.gnu.org/software/emacs/][GNU/Emacs]] 
 Since there are so many different ways people use e-mail, there are a lot of
 ways to customize it to your needs; see the [[https://www.djcbsoftware.nl/code/mu/mu4e/][Mu4e Reference Manual]] for all the
 details, here we include quick-start instructions, in the form of ~use-package~
-declaration. Much of it is commented-out, pick the parts that best fit your
-particular needs; see the manual for a deeper dive.
+declaration.
+
+Much of it is commented-out, pick the parts that best fit your particular needs;
+see the manual for a deeper dive.
 
 #+begin_src elisp
 (use-package mu4e
