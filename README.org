@@ -13,10 +13,6 @@
 
 Welcome to ~mu~!
 
-#+begin_html
-<img src="assets/email-hazard.jpg" style="float:right" alt="drowning in email"/>
-#+end_html
-
 With the enormous amounts of e-mail many people gather and the importance of
 e-mail message in our work-flows, it's essential to quickly deal with all that
 mail - in particular, to instantly find that one important e-mail you need right
@@ -156,6 +152,10 @@ $ mu find hello
 * Mu4e
 
 Mu4e is an e-mail client for [[https://www.gnu.org/software/emacs/][GNU/Emacs]] that works on top of ~mu~.
+
+#+begin_html
+<img src="assets/mu4e-1.14-screenshot.jpeg" alt="drowning in email"/>
+#+end_html
 
 ~mu4e~ is shipped as part of the ~mu~ package, and the versions must match.
 
