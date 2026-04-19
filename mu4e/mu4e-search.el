@@ -203,6 +203,7 @@ with the favorite bookmark's query."
           (if (or (null expr) edit)
               (mu4e-search-read-query prompt expr)
             expr))
+         (expr (replace-regexp-in-string (rx control) " " expr))
          (expr (if mu4e-query-rewrite-function ;; rewrite?
                    (funcall mu4e-query-rewrite-function expr) expr)))
     (mu4e-mark-handle-when-leaving)
