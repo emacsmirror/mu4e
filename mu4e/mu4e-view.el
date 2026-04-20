@@ -517,20 +517,19 @@ As a side-effect, a message that is being viewed loses its
       (goto-char (point-min)))))
 
 (defun mu4e--view-cleanup-message-text ()
-  "Clean up the rendered-message for use as cited text.
+  "Clean up the rendered message for use as cited text in replies.
 
-This expects to be called while in that message buffer.
+In particular, strip Gnus MIME-part buttons (e.g. attachment
+lines like \"[2. foo.pdf --- application/pdf; foo.pdf]\") so
+they do not end up in cited replies.
 
-Strip Gnus MIME-part buttons (e.g. attachment lines like \"[2.
-foo.pdf --- application/pdf; foo.pdf]\") so they do not end up in
-cited replies.
-
-The buttons are identified via the
-`gnus-callback' text property that Gnus puts on them, rather than
-by matching their textual format."
+This expects to be called while in that message buffer."
   (let ((pos (point-min)) start)
-    (while (setq start (text-property-not-all
-                        pos (point-max) 'gnus-callback nil))
+    (while (setq start (text-property-any
+                        pos (point-max)
+                        ;; filter out gnus-mm-display-part, not
+                        ;; _all_ buttons (#2922)
+                        'gnus-callback 'gnus-mm-display-part))
       (let* ((end (or (next-single-property-change
                        start 'gnus-callback nil (point-max))
                       (point-max)))
