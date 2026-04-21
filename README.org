@@ -170,6 +170,7 @@ see the manual for a deeper dive.
 #+begin_src elisp
 (use-package mu4e
   :ensure nil
+  ;; :load-path "path/to/mu4e"
   :config
 ;;;; Basics
 
@@ -191,8 +192,8 @@ see the manual for a deeper dive.
   ;; The command depends on your local setup, e.g.:
   ;; "offlineimap", "mbsync", "fetchmail", ... or some shell script
   (setq mu4e-get-mail-command "/bin/true" ;;
+        mu4e-index-lazy-check t           ;; quick check
         mu4e-update-interval 180)         ;; check every 3 minutes
-
   ;;
 ;;;; Reading mail
   ;;
@@ -255,7 +256,7 @@ see the manual for a deeper dive.
   (setq mu4e-use-fancy-chars t) ;; allow for unicode emojis
 
   ;;
-  ;;;; Custom bookmarks / queries
+;;;; Custom bookmarks / queries
   ;; e.g.:
   ;; (add-to-list 'mu4e-bookmarks
   ;;              '( :name  "Inbox messages in the last 7 days"
@@ -321,6 +322,14 @@ see the manual for a deeper dive.
   ;;       (concat
   ;;        "User McUserFace\n"
   ;;        "http://www.example.com\n"))
+
+  (setq mu4e-attachment-dir "~/Desktop")
+  ;; this can also be function that takes a filename and mime-type
+  ;; and returns a string (path)
+
+  ;; add an 'action' (press 'a', then 'V' when in the message-view, to show
+  ;; current message in an external web-browsser
+  (add-to-list 'mu4e-view-actions '("ViewBrowser" . mu4e-action-view-in-browser) t)
 
   :hook
   ;; tweak the composer
